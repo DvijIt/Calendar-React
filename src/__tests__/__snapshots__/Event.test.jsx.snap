@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Event /> should display Calendar 1`] = `
+<div
+  className="event"
+  data-id="1"
+  data-option="event"
+  onClick={[Function]}
+  onPointerEnter={[Function]}
+  onPointerLeave={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "top": "00px",
+    }
+  }
+>
+  <h4
+    className="event-title"
+  >
+    title 1
+  </h4>
+  <div
+    className="event-time"
+  >
+    20:00 - 21:00
+  </div>
+  <div
+    className="event-description"
+  >
+    descr
+  </div>
+</div>
+`;

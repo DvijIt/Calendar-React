@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateEventButton /> should render create button 1`] = `
+<div
+  className="header__create-event"
+>
+  <button
+    className="waves-effect waves-teal z-depth-2 white black-text create-btn"
+    data-option="buttonCreateEvent"
+  >
+    Создать
+  </button>
+</div>
+`;
