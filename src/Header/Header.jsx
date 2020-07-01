@@ -1,6 +1,5 @@
 import React from 'react'
 import Navigation from './Navigation'
-import './header.scss'
 import MonthInfo from './MonthInfo'
 import Week from './Week'
 import CreateButton from './CreateEventButton'
@@ -13,7 +12,7 @@ const Header = ({
   currentMonth,
   openPopup
 }) => {
-  
+
   return (
     <header className='calendar__header header'>
       <div className="header__top-info">

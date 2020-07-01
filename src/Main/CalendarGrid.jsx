@@ -1,7 +1,6 @@
 import React from 'react'
 import TimeScale from './TimeScale'
 import ColumnDay from './ColumnDay'
-import './calendar.scss'
 
 const CalendarGrid = ({ day, openPopup, checkDelete, events, getEventData }) => {
   return (

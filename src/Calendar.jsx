@@ -2,8 +2,7 @@ import React from 'react';
 import Header from './Header/Header';
 import CalendarGrid from './Main/CalendarGrid';
 import moment from 'moment'
-import 'materialize-css/dist/css/materialize.min.css';
-import './index.scss';
+
 import Popup from './Modal/Popup';
 import { fetchEventsList } from './Gateway'
 
