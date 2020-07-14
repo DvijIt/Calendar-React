@@ -1,27 +1,35 @@
-import React from 'react'
-import moment from 'moment'
+import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const NumbersOfDay = ({ day }) => {
-  let currentDay = day
+  let currentDay = day;
 
-  let arr = Array(7).fill("0");
+  const arr = Array(7).fill('0');
   const weekDays = arr.map(() => {
     let activeDay;
-    const startOfWeek = moment().startOf("isoWeek").add(currentDay, "day");
-    if (moment().format("DD.MM.YY") === startOfWeek.format("DD.MM.YY")) {
-      activeDay = "day-number active";
+    const startOfWeek = moment().startOf('isoWeek').add(currentDay, 'day');
+    if (moment().format('DD.MM.YY') === startOfWeek.format('DD.MM.YY')) {
+      activeDay = 'day-number active';
     } else {
-      activeDay = "day-number";
+      activeDay = 'day-number';
     }
 
-    currentDay++;
+    currentDay += 1;
     return (
-        <span key={currentDay} className={activeDay}>{startOfWeek.format("DD")}</span>
+      <span key={currentDay} className={activeDay}>{startOfWeek.format('DD')}</span>
     );
   });
 
   return <div className="days-numbers-list">{weekDays}</div>;
+};
 
-}
+NumbersOfDay.propTypes = {
+  day: PropTypes.number,
+};
 
-export default NumbersOfDay
+NumbersOfDay.defaultProps = {
+  day: PropTypes.number,
+};
+
+export default NumbersOfDay;

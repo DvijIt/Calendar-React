@@ -1,56 +1,54 @@
 import React, { Component } from 'react';
 import { Icon } from 'react-materialize';
-import DatePicker from '../components/DatePicker'
-import { createEvent , editEvent } from '../Gateway'
+import DatePicker from '../components/DatePicker';
+import { createEvent, editEvent } from '../Gateway';
 
 class Popup extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      ...this.props
+      ...this.props,
     };
   }
 
-  handleChange = (event) => {
+  changeDate = (value) => {
+    this.setState(
+      {
+        date: value,
+      },
+    );
+  }
+
+  handleChange =(event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
 
-  componentDidMount = () => {
-    console.log(typeof this.state.id);
-  }
-
-  changeDate = (value) => {
-    console.log('qwe');
-    
-    this.setState(
-      {
-        ...this.state,
-        date: value
-      }
-    );
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
-    this.state.id === undefined ? this.createNewEvent() : this.editEventData()
+    this.state.id === undefined ? this.createNewEvent() : this.editEventData();
   };
 
   createNewEvent = () => {
+    const { closePopup } = this.props;
     createEvent(this.state)
-      .then(this.props.closePopup)
+      
+      .then(closePopup);
   }
 
   editEventData = () => {
-    editEvent(this.state.id, this.state).then(this.props.closePopup)
+    const { id } = this.state;
+    editEvent(id, this.state).then(this.props.closePopup);
   }
-  
+
   render() {
+    const {
+      title, date, timeStart, timeEnd, description, color,
+    } = this.state;
     return (
-      <div id="modal1" className="popup z-depth-4" >
+      <div id="modal1" className="popup z-depth-4">
         <div className="modal-content">
           <form className="popup-form" onSubmit={this.handleSubmit}>
             <input
@@ -58,7 +56,7 @@ class Popup extends Component {
               type="text"
               name="title"
               placeholder="Название"
-              value={this.state.title}
+              value={title}
               onChange={this.handleChange}
             />
 
@@ -66,14 +64,14 @@ class Popup extends Component {
               <Icon small>access_time</Icon>
 
               <div className="input-field">
-                <DatePicker getDate={this.changeDate} date={this.state.date} />
+                <DatePicker getDate={this.changeDate} date={date} />
               </div>
               <div className="input-field">
                 <input
                   className="dataStart"
                   type="text"
                   name="timeStart"
-                  value={this.state.timeStart}
+                  value={timeStart}
                   onChange={this.handleChange}
                 />
               </div>
@@ -82,7 +80,7 @@ class Popup extends Component {
                   className="dataEnd"
                   type="text"
                   name="timeEnd"
-                  value={this.state.timeEnd}
+                  value={timeEnd}
                   onChange={this.handleChange}
                 />
               </div>
@@ -94,7 +92,7 @@ class Popup extends Component {
                 type="text"
                 name="description"
                 placeholder="Добавить описание"
-                value={this.state.description}
+                value={description}
                 onChange={this.handleChange}
               />
             </div>
@@ -102,7 +100,7 @@ class Popup extends Component {
               type="color"
               className="popup-form__color"
               name="color"
-              value={this.state.color}
+              value={color}
               onChange={this.handleChange}
             />
             <div>
@@ -115,8 +113,9 @@ class Popup extends Component {
               onClick={this.handleSubmit}
             >
               Сохранить
-          </button>
+            </button>
             <button
+              type="button"
               className="close btn-flat"
               onClick={this.props.closePopup}
             >
@@ -128,5 +127,7 @@ class Popup extends Component {
     );
   }
 }
+
+
 
 export default Popup;

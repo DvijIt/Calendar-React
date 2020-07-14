@@ -1,11 +1,18 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const MonthInfo = ({ getCurrentMonth }) => {
-  return (
-    <div className="header__month-info">
-      <span>{getCurrentMonth}</span>
-    </div>
-  )
-}
+const MonthInfo = ({ getCurrentMonth }) => (
+  <div className="header__month-info">
+    <span>{getCurrentMonth}</span>
+  </div>
+);
 
-export default MonthInfo
+MonthInfo.propTypes = {
+  getCurrentMonth: PropTypes.string,
+};
+
+MonthInfo.defaultProps = {
+  getCurrentMonth: PropTypes.string,
+};
+
+export default MonthInfo;

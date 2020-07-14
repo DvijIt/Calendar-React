@@ -1,14 +1,13 @@
-import React from "react";
-import moment from "moment";
+import React from 'react';
+import moment from 'moment';
+import './redline.scss';
 
-let hour = +moment().format("HH");
-let minute = +moment().format("mm");
-let margin = hour * 60 + minute;
+const hour = +moment().format('HH');
+const minute = +moment().format('mm');
+const margin = hour * 60 + minute;
 
-const Redline = () => {
-  return (
-    <div className="redline" style={{ marginTop: `${margin}px` }} />
-  );
-};
+const Redline = () => (
+  <div className="redline" style={{ top: `${margin}px` }} />
+);
 
 export default Redline;

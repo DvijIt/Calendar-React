@@ -1,46 +1,74 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import moment from 'moment';
 import Header from './Header/Header';
 import CalendarGrid from './Main/CalendarGrid';
-import moment from 'moment'
 
 import Popup from './Modal/Popup';
-import { fetchEventsList } from './Gateway'
+import { fetchEventsList } from './Gateway';
 
 class Calendar extends React.Component {
-  state = {
-    day: 0,
-    show: false,
-    dataEvent: {
-      title: "",
-      timeStart: "",
-      timeEnd: "",
-      date: '',
-      description: "",
-      color: "#6495ed",
-    },
-    checkDelete: false,
-    events: [],
+  constructor() {
+    super();
+    this.state = {
+      day: 0,
+      show: false,
+      dataEvent: {
+        title: '',
+        timeStart: '',
+        timeEnd: '',
+        date: '',
+        description: '',
+        color: '#6495ed',
+      },
+      checkDelete: false,
+      events: [],
+    };
+  }
 
+  componentDidMount = () => {
+    fetchEventsList()
+      .then((events) => {
+        this.setState({ events });
+      });
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { show, checkDelete } = this.state;
+    if (show !== prevState.show || checkDelete !== prevState.checkDelete) {
+      fetchEventsList()
+        .then((events) => {
+          this.setState({
+            events,
+            checkDelete: false,
+          });
+        });
+    }
   }
 
   handlePrevWeek = () => {
-    this.setState({ day: this.state.day - 7 })
+    const { day } = this.state;
+    this.setState({ day: day - 7 });
   }
+
   handleNextWeek = () => {
-    this.setState({ day: this.state.day + 7 })
+    const { day } = this.state;
+    this.setState({ day: day + 7 });
   }
+
   handleCurrentWeek = () => {
-    this.setState({ day: 0 })
+    this.setState({ day: 0 });
   }
 
   currentMonth = () => {
-    let startDate = moment().startOf("isoWeek").add(this.state.day, "day");
-    let endDate = moment().startOf("isoWeek").add(this.state.day + 6, "day");
+    const { day } = this.state;
+    const startDate = moment().startOf('isoWeek').add(day, 'day');
+    const endDate = moment().startOf('isoWeek').add(day + 6, 'day');
 
-    const startMonth = startDate.format("MMM");
-    const startYear = startDate.format("YYYY");;
-    const endMonth = endDate.format("MMM");
-    const endYear = endDate.format("YYYY");
+    const startMonth = startDate.format('MMM');
+    const startYear = startDate.format('YYYY');
+    const endMonth = endDate.format('MMM');
+    const endYear = endDate.format('YYYY');
 
     let correctDate = `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
 
@@ -59,35 +87,35 @@ class Calendar extends React.Component {
       this.setState({
         show: true,
         dataEvent: {
-          title: "",
+          title: '',
           timeStart: moment(new Date()).format('HH:00'),
-          timeEnd: moment(new Date()).add(1, "hour").format(`HH:00`),
+          timeEnd: moment(new Date()).add(1, 'hour').format('HH:00'),
           date: moment(new Date()).format('DD MM YYYY'),
-          description: "",
-          color: "",
-        }
-      })
+          description: '',
+          color: '',
+        },
+      });
     }
     if (e.target.dataset.option === 'sell') {
       this.setState({
         show: true,
         dataEvent: {
-          title: "",
+          title: '',
           timeStart: e.target.dataset.time,
           timeEnd: e.target.nextElementSibling.dataset.time,
           date: e.target.parentNode.dataset.date,
-          description: "",
-          color: "",
-        }
-      })
+          description: '',
+          color: '',
+        },
+      });
     }
-
   }
 
   getEventData = (e, targetEvent) => {
     if (e.target.closest('[data-option="event"]') && !e.target.closest('.popup-delete')) {
-      const { id, title, timeStart, date, timeEnd, description, color } = targetEvent
-      console.log(targetEvent);
+      const {
+        id, title, timeStart, date, timeEnd, description, color,
+      } = targetEvent;
       this.setState({
         show: true,
         dataEvent: {
@@ -97,58 +125,46 @@ class Calendar extends React.Component {
           timeEnd,
           date,
           description,
-          color
-        }
-      })
+          color,
+        },
+      });
     }
-
-
   }
 
   closePopup = () => {
-    this.setState({ show: false })
+    this.setState({ show: false });
   }
 
   handleDelete = () => {
-    this.setState({ checkDelete: true })
-  }
-
-  componentDidMount = () => {
-    fetchEventsList()
-      .then(events => {
-        this.setState({ events })
-      })
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (this.state.show !== prevState.show || this.state.checkDelete !== prevState.checkDelete) {
-      fetchEventsList()
-        .then(events => {
-          this.setState({
-            events,
-            checkDelete: false
-          });
-        })
-    }
+    this.setState({ checkDelete: true });
   }
 
   render() {
+    const {
+      day, events, show, dataEvent,
+    } = this.state;
     return (
       <div className="calendar">
         <Header
-          day={this.state.day}
+          day={day}
           handleNextWeek={this.handleNextWeek}
           handlePrevWeek={this.handlePrevWeek}
           handleCurrentWeek={this.handleCurrentWeek}
           currentMonth={this.currentMonth()}
           openPopup={this.showPopup}
         />
-        <CalendarGrid day={this.state.day} openPopup={this.showPopup} checkDelete={this.handleDelete} events={this.state.events} getEventData={this.getEventData} />
-        {this.state.show && (<Popup closePopup={this.closePopup} {...this.state.dataEvent} />)}
+        <CalendarGrid
+          day={day}
+          openPopup={this.showPopup}
+          checkDelete={this.handleDelete}
+          events={events}
+          getEventData={this.getEventData}
+        />
+        {show && (<Popup closePopup={this.closePopup} {...dataEvent} />)}
       </div>
 
-    )
+    );
   }
 }
 
-export default Calendar
+export default Calendar;

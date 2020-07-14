@@ -1,12 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import './timescale.scss';
 
 class TimeScale extends PureComponent {
   render() {
-    let hoursArray = Array(23).fill("0");
+    const hoursArray = Array(23).fill('0');
     return (
       <aside className="calendar__timescale">
         {hoursArray.map((_, index) => {
-          let hour = index + 1;
+          const hour = index + 1;
           return (
             <div key={hour} className="hour">
               {hour < 10 ? `0${hour}:00` : `${hour}:00`}
@@ -14,9 +15,8 @@ class TimeScale extends PureComponent {
           );
         })}
       </aside>
-    )
+    );
   }
-
 }
 
-export default TimeScale
+export default TimeScale;
