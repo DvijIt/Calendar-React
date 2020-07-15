@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import './timescale.scss';
+import './styles.scss';
 
 class TimeScale extends PureComponent {
   render() {

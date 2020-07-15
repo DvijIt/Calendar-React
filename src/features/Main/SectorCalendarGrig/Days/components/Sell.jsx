@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Event from './Event';
+import Event from '../../Event/componetns/Event';
 
 class Sell extends React.Component {
   render() {

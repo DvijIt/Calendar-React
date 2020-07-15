@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import RedLine from './RedLine';
-import Sell from './Sell';
+import RedLine from '../../Redline/components/RedLine';
+import Sell from '../components/Sell';
+import './styles.scss';
 
 const ColumnDay = ({
   day, events, checkDelete, openPopup, getEventData,

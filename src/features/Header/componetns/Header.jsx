@@ -1,10 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import Navigation from './Navigation';
-import MonthInfo from './MonthInfo';
-import Week from './Week';
-import CreateButton from './CreateEventButton';
-import './header.scss';
+import React from 'react';
+import CreateButton from '../Navigation/componetns/CreateEventButton';
+import MonthInfo from '../Navigation/componetns/MonthInfo';
+import Navigation from '../Navigation/componetns/Navigation';
+import './styles.scss';
+import Week from '../Week/componetns/Week';
 
 const Header = ({
   day,

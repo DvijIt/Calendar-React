@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TimeScale from './TimeScale';
-import ColumnDay from './ColumnDay';
+import TimeScale from '../../TimeScale/componetns/TimeScale';
+import ColumnDay from '../Days/components/ColumnDay';
 import './calendar.scss';
 
 const CalendarGrid = ({

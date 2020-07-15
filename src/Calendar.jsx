@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import moment from 'moment';
-import Header from './Header/Header';
-import CalendarGrid from './Main/CalendarGrid';
+import Header from './features/Header/componetns/Header';
+import CalendarGrid from './features/Main/SectorCalendarGrig/componetns/CalendarGrid';
 
-import Popup from './Modal/Popup';
+import Popup from './features/Modal/components/Popup';
 import { fetchEventsList } from './Gateway';
 
 class Calendar extends React.Component {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DeleteEventPopup from '../Modal/DeleteEventPopup';
+import DeleteEventPopup from '../../../../Modal/components/DeleteEventPopup';
+import './styles.scss';
 
 class Event extends React.Component {
   constructor(props) {

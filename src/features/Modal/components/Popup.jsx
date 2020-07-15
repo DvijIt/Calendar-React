@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Icon } from 'react-materialize';
-import DatePicker from '../components/DatePicker';
-import { createEvent, editEvent } from '../Gateway';
+import DatePicker from './DatePicker';
+import { createEvent, editEvent } from '../../../Gateway';
+import './modalCreate.scss';
 
 class Popup extends Component {
   constructor(props) {

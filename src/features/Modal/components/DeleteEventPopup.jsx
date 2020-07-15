@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-materialize';
-import { deleteEvent } from '../Gateway';
+import { deleteEvent } from '../../../Gateway';
+import './modalDelete.scss';
 
 const DeleteEventPopup = ({ id, checkDelete }) => {
   const handleClick = () => {

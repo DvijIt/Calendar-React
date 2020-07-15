@@ -1,0 +1,18 @@
+#modal2 {
+  position: absolute;
+  color: #000;
+  bottom: -25px;
+  right: -15%;
+  background-color: #fafafa;
+  padding: 4px 25px 4px 10px;
+  max-height: max-content;
+  width: max-content;
+  border-radius: 2px;
+  z-index: 99;
+
+  .popup-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

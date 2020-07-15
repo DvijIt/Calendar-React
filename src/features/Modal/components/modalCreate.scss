@@ -1,0 +1,33 @@
+.popup {
+  &__data {
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    margin-left: 20px;
+  }
+
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+#modal1 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+  padding: 16px 24px 10px;
+  max-height: 70%;
+  width: 500px;
+  margin: auto;
+  overflow-y: auto;
+  border-radius: 10px;
+  will-change: top, opacity;
+  z-index: 99;
+}

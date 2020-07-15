@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import './redline.scss';
+import './styles.scss';
 
 const hour = +moment().format('HH');
 const minute = +moment().format('mm');
