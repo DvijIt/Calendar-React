@@ -3,7 +3,6 @@ import React from 'react';
 import moment from 'moment';
 import Header from './features/Header/componetns/Header';
 import CalendarGrid from './features/Main/SectorCalendarGrig/componetns/CalendarGrid';
-
 import Popup from './features/Modal/components/Popup';
 import { fetchEventsList } from './Gateway';
 
@@ -58,27 +57,6 @@ class Calendar extends React.Component {
 
   handleCurrentWeek = () => {
     this.setState({ day: 0 });
-  }
-
-  currentMonth = () => {
-    const { day } = this.state;
-    const startDate = moment().startOf('isoWeek').add(day, 'day');
-    const endDate = moment().startOf('isoWeek').add(day + 6, 'day');
-
-    const startMonth = startDate.format('MMM');
-    const startYear = startDate.format('YYYY');
-    const endMonth = endDate.format('MMM');
-    const endYear = endDate.format('YYYY');
-
-    let correctDate = `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
-
-    if (startMonth === endMonth && startYear === endYear) {
-      correctDate = `${startMonth} ${endYear}`;
-    } else if (startYear === endYear) {
-      correctDate = `${startMonth} - ${endMonth} ${startYear}`;
-    }
-
-    return correctDate;
   }
 
   showPopup = (e) => {
@@ -150,7 +128,6 @@ class Calendar extends React.Component {
           handleNextWeek={this.handleNextWeek}
           handlePrevWeek={this.handlePrevWeek}
           handleCurrentWeek={this.handleCurrentWeek}
-          currentMonth={this.currentMonth()}
           openPopup={this.showPopup}
         />
         <CalendarGrid

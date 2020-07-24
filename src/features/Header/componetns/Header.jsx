@@ -11,7 +11,6 @@ const Header = ({
   handleNextWeek,
   handlePrevWeek,
   handleCurrentWeek,
-  currentMonth,
   openPopup,
 }) => (
   <header className="calendar__header header">
@@ -22,7 +21,7 @@ const Header = ({
         handlePrevWeek={handlePrevWeek}
         handleCurrentWeek={handleCurrentWeek}
       />
-      <MonthInfo getCurrentMonth={currentMonth} />
+      <MonthInfo day={day} />
     </div>
     <Week day={day} />
   </header>
@@ -33,7 +32,6 @@ Header.propTypes = {
   handleNextWeek: PropTypes.func,
   handlePrevWeek: PropTypes.func,
   handleCurrentWeek: PropTypes.func,
-  currentMonth: PropTypes.string,
   openPopup: PropTypes.func,
 };
 
@@ -42,7 +40,6 @@ Header.defaultProps = {
   handleNextWeek: PropTypes.func,
   handlePrevWeek: PropTypes.func,
   handleCurrentWeek: PropTypes.func,
-  currentMonth: PropTypes.string,
   openPopup: PropTypes.func,
 };
 
