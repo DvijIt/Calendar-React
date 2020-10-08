@@ -1,4 +1,14 @@
-Hi! My name is Andrey
+# Calendar-react
+
+Tech stack:
+HTML5, 
+CSS3,
+SASS,
+BEM methodology,
+Javascript (ES6),
+React/Redux,
+babel,
+https calls to the REST API on back-end
 
 ## Available Scripts
 
